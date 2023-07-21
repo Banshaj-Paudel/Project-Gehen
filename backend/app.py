@@ -83,14 +83,6 @@ def dashboard():
     # Check if the user_auth cookie is present and valid
     check_authentication()
 
-    # Retrieve all patient profiles from the database
-    db = mysql.connector.connect(
-        host=DB_HOST,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        database=DB_NAME
-    )
-
     return render_template('dashboard.html')
 
 
@@ -100,6 +92,62 @@ def logout():
     response = make_response(redirect(url_for('login')))
     response.delete_cookie('user_auth')
     return response
+
+@app.route('/create')
+def create():
+    # Check if the user_auth cookie is present and valid
+    check_authentication()
+
+    return render_template('create.html')
+
+@app.route('/create_submit', methods=['POST'])
+def create_submit():
+    # Check if the user_auth cookie is present and valid
+    check_authentication()
+
+    # Connect to database
+    db = mysql.connector.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+
+    # Get the form data
+    fname = request.form['first_name']
+    lname = request.form['last_name']
+    age = request.form['age']
+    street = request.form['street_address']
+    city = request.form['city']
+    province = request.form['province']
+    contact = request.form['contact']
+    country = request.form['country']
+    department = request.form['department']
+    mri_scan = request.files['mri_scan']
+    patient_image = request.files['patient_image']
+    
+    # Check if files are uploaded and save them to the server
+    if mri_scan and patient_image:
+        # Ensure the upload folder exists
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
+   
+   # Save the uploaded files with secure filenames
+    mri_scan_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(mri_scan.filename))
+    patient_image_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(patient_image.filename))
+    mri_scan.save(mri_scan_path)
+    patient_image.save(patient_image_path)
+
+    # Insert the data into the database
+    cursor = db.cursor()
+    query = "INSERT INTO patient_profiles (first_name, last_name, age, street_address, city, province, contact, country, department, mri_scan_path, patient_image_path) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)"
+    values = (fname, lname, age, street, city, province, contact, country, department, mri_scan_path, patient_image_path)
+    cursor.execute(query, values)
+    db.commit()
+    cursor.close()
+    db.close()
+
+    return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     app.run(debug=True)
