@@ -83,7 +83,14 @@ def dashboard():
     # Check if the user_auth cookie is present and valid
     check_authentication()
 
-    return render_template('dashboard.html')
+    # Fetch all the patient profiles from the database
+    cursor = db.cursor()
+    query = "SELECT * FROM patient_profiles"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    cursor.close()
+    
+    return render_template('dashboard.html', result=result)
 
 
 @app.route('/logout')
@@ -104,14 +111,6 @@ def create():
 def create_submit():
     # Check if the user_auth cookie is present and valid
     check_authentication()
-
-    # Connect to database
-    db = mysql.connector.connect(
-        host=DB_HOST,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        database=DB_NAME
-    )
 
     # Get the form data
     fname = request.form['first_name']
@@ -145,7 +144,6 @@ def create_submit():
     cursor.execute(query, values)
     db.commit()
     cursor.close()
-    db.close()
 
     return redirect(url_for('dashboard'))
 
