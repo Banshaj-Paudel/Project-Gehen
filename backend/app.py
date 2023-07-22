@@ -83,14 +83,8 @@ def dashboard():
     # Check if the user_auth cookie is present and valid
     check_authentication()
 
-    # Fetching the existing profiles from dashboard using the ORM
-    cursor = db.cursor()
-    query = "SELECT * FROM patient_profiles"
-    cursor.execute(query)
-    result = cursor.fetchall()
-    cursor.close()
+    return render_template('dashboard.html')
 
-    return render_template('dashboard.html', result=result)
 
 @app.route('/logout')
 def logout():

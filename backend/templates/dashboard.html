@@ -8,13 +8,5 @@
     <h2>Dashboard</h2>
     <button><a href="/create">Create Profile</a></button>
     <button><a href="/logout">Logout</a></button>
-    <div class="card" style="width: 18rem;">
-        {% for patient in result %}
-            <img class="card-img-top" style="height: 16rem; width: 14rem;" src="{{url_for('static', filename = patient[10])}}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{patient[1] + " " + patient[2]}}</h5>
-              <p class="card-text">Age: {{patient[3]}}</p>
-            </div>
-        {% endfor %}
-    </div>
+</body>
 </html>
