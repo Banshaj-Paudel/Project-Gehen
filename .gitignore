@@ -2,3 +2,5 @@
 /backend/rough.py
 /backend/uploads
 /backend/static/uploads
+/frontend/.vscode
+/backend/__pycache__
