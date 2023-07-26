@@ -42,11 +42,11 @@ def dashboard():
 
     # Fetch all the patient profiles from the database
     cursor = db.cursor()
-    query = "SELECT * FROM patient_profiles"
+    query = "SELECT `id`, `first_name`, `last_name`, `patient_image_path` FROM patient_profiles"
     cursor.execute(query)
     result = cursor.fetchall()
     cursor.close()
-    
+    print(result)
     return render_template('dashboard.html', result=result)
 
 
@@ -101,12 +101,24 @@ def create_submit():
     # Insert the data into the database
     cursor = db.cursor()
     query = "INSERT INTO patient_profiles (first_name, last_name, age, street_address, city, province, contact, country, department, mri_scan_path, patient_image_path) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)"
-    values = (fname, lname, age, street, city, province, contact, country, department, mri_scan_path, patient_image_path)
+    values = (fname, lname, age, street, city, province, contact, country, department, "uploads/" + mri_scan.filename, "uploads/" + patient_image.filename)
     cursor.execute(query, values)
     db.commit()
     cursor.close()
 
     return redirect(url_for('dashboard'))
 
+# Profile endpoint
+@app.route('/profile/<id>')
+def profile(id):
+    cursor=db.cursor()
+    patient_query = f"SELECT * FROM patient_profiles WHERE `id`={id}"
+    cursor.execute(patient_query)
+    patient_info = cursor.fetchall()
+    cursor.close()
+    
+    return render_template('profile.html',patients=patient_info)
+
 if __name__ == '__main__':
+    cursor = db.cursor()
     app.run(debug=True)

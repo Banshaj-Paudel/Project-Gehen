@@ -78,12 +78,15 @@
 
                 <div class="boxes">
                 {% for patient in result %}
+                <a style="text-decoration: none;" href="/profile/{{ patient[0] }}">
                     <div class="box">
-                        <img class="box-image"
-                            src="{{ patient[11] }}"
-                            alt="">
-                        <span class="text">{{patient[1] + " " + patient[2]}}</span>
+                            <img class="box-image"
+                                src="{{ url_for('static',filename=patient[3]) }}"
+                                alt="">
+                            <span class="text">{{patient[1] + " " + patient[2]}}</span>
+                        
                     </div>
+                </a>
                 {% endfor %}
                 </div>
             </div>

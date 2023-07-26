@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{patients[0][1]}}'s profile</title>
+</head>
+<body>
+    {% for patient in patients %}
+                    <div class="box">
+                            <img class="box-image"
+                                src="{{url_for('static',filename=patient[11])}}"
+                                alt="Patient's Image"
+                                style="height: 16rem; width: 14rem;"><br>
+                            <span class="text">Name: {{patient[1] + " " + patient[2]}}</span><br>
+                            <span class="text">Street Addres: {{patient[4]}}</span><br>
+                            <span class="text">City: {{patient[5]}}</span><br>
+                            <span class="text">Province: {{patient[6]}}</span><br>
+                            <span class="text">Country: {{patient[7]}}</span><br>
+                            <span class="text">Contact: {{patient[8]}}</span><br>
+                            <span class="text">Department: {{patient[9]}}</span><br>
+                            <img class="box-image"
+                                src="{{url_for('static',filename=patient[10])}}"
+                                alt="MRI Image"
+                                style="height: 16rem; width: 14rem;"><br>
+                    </div>
+                
+    {% endfor %}
+                </div>
+</body>
+</html>
