@@ -46,7 +46,6 @@ def dashboard():
     cursor.execute(query)
     result = cursor.fetchall()
     cursor.close()
-    print(result)
     return render_template('dashboard.html', result=result)
 
 
@@ -118,6 +117,16 @@ def profile(id):
     cursor.close()
     
     return render_template('profile.html',patients=patient_info)
+
+@app.route('/delete/<id>',methods=["GET"])
+def delete_profile(id):
+    cursor = db.cursor()
+    delete_query = f"DELETE FROM `patient_profiles` WHERE `patient_profiles`.`id` = {id}"
+    cursor.execute(delete_query)
+    db.commit()
+    cursor.close()
+
+    return redirect(url_for('dashboard'))
 
 if __name__ == '__main__':
     cursor = db.cursor()
