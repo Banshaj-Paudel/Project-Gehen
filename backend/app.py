@@ -128,6 +128,11 @@ def delete_profile(id):
 
     return redirect(url_for('dashboard'))
 
+@app.route('/analyse/id', methods=['POST'])
+def analyse(id):
+    print(id)
+    return redirect(url_for(profile))
+
 if __name__ == '__main__':
     cursor = db.cursor()
     app.run(debug=True)

@@ -1,9 +1,13 @@
 import mysql.connector
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 # Configure your database connection
-DB_HOST = '127.0.0.1'
-DB_USER = 'root'
-DB_PASSWORD = ''
-DB_NAME = 'project_gehen'
+DB_HOST = os.getenv("hostname")
+DB_USER = os.getenv("username")
+DB_PASSWORD = os.getenv("password")
+DB_NAME = os.getenv("dbname")
 
     
 # Connect to MySQL database
