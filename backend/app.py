@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 from models import User
 from database import db
+
 # Create the Flask app
 app = Flask(__name__)
 
@@ -127,11 +128,6 @@ def delete_profile(id):
     cursor.close()
 
     return redirect(url_for('dashboard'))
-
-@app.route('/analyse/id', methods=['POST'])
-def analyse(id):
-    print(id)
-    return redirect(url_for(profile))
 
 if __name__ == '__main__':
     cursor = db.cursor()
