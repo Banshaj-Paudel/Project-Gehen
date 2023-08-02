@@ -1,0 +1,114 @@
+:root {
+  /* ===== Colors ===== */
+  --primary-color: #97b2fa;
+  --panel-color: #FFF;
+  --text-color: #000;
+  --black-light-color: #707070;
+  --border-color: #e6e5e5;
+  --toggle-color: #DDD;
+  --box1-color: #696969;
+  --box2-color: #FFE6AC;
+  --box3-color: #E7D1FC;
+  --title-icon-color: #fff;
+  --hover-color: #7493e7;
+  --patient-details-color: #4DA3FF;
+  --border-color: #d1d1d1;
+  --mri-border-color: #00000033;
+  /* ====== Transition ====== */
+  --tran-05: all 0.5s ease;
+  --tran-03: all 0.3s ease;
+  --tran-02: all 0.2s ease;
+}
+
+body.dark {
+  --primary-color: #3A3B3C;
+  --panel-color: #242526;
+  --text-color: #CCC;
+  --black-light-color: #CCC;
+  --border-color: #4D4C4C;
+  --toggle-color: #FFF;
+  --box1-color: #3A3B3C;
+  --box2-color: #3A3B3C;
+  --box3-color: #3A3B3C;
+  --title-icon-color: #CCC;
+  --hover-color: #4d4d4d;
+  --patient-details-color: #97b2fa;
+  --border-color: #d1d1d1;
+  --mri-border-color: #d1d1d11a;
+}
+
+.dash-content .overview .heading {
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: 600;
+}
+.dash-content .overview .profile-and-report .profile-area {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 30px 0;
+}
+.dash-content .overview .profile-and-report .profile-area .image-area .image {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+.dash-content .overview .profile-and-report .profile-area .profile-details .row {
+  display: flex;
+}
+.dash-content .overview .profile-and-report .profile-area .profile-details .row p {
+  color: var(--text-color);
+  font-size: 18px;
+  margin: 10px 0;
+}
+.dash-content .overview .profile-and-report .profile-area .profile-details .row .hilight {
+  color: var(--patient-details-color);
+  padding-left: 10px;
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .dash-content .overview .profile-and-report .profile-area {
+    flex-direction: column;
+    align-items: self-start;
+  }
+  .dash-content .overview .profile-and-report .profile-area .profile-details .row {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .dash-content .overview .profile-and-report .profile-area .profile-details .row .hilight {
+    padding-left: 0;
+    margin-top: -10px;
+  }
+}
+.dash-content .overview .profile-and-report .mris {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 30px;
+  border-radius: 5px;
+  border: 1px solid var(--mri-border-color);
+}
+.dash-content .overview .profile-and-report .mris img {
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+}
+.dash-content .overview .profile-and-report .report-area {
+  margin-bottom: 50px;
+  position: relative;
+}
+.dash-content .overview .profile-and-report .report-area h2 {
+  margin: 30px 0;
+}
+.dash-content .overview .profile-and-report .report-area .download-report-btn {
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border: 1px solid var(--mri-border-color);
+}
+.dash-content .overview .profile-and-report .report-area .download-report-btn:hover {
+  background-color: var(--hover-color);
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../static/partials/css/reset.css">
+    <link rel="stylesheet" href="../static/partials/css/style.css">
+    <link rel="stylesheet" href="../static/partials/css/profile.css">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='partials/css/style.css')}}"> -->
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- Font Awesome Icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Gehen || Admin Dashboard Panel</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="https://st3.depositphotos.com/1561359/12975/i/450/depositphotos_129758586-stock-photo-3d-green-letter-g.jpg"
+                    alt="">
+            </div>
+
+            <span class="logo_name">Gehen</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="logout-mode">
+                <li><a href="/logout">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- nav ends here -->
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <!-- <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div> -->
+
+            <img src="https://yt3.googleusercontent.com/ytc/AOPolaSFCHpzuAarMICSpvuoV-W0t5T-PDM0OgiiVneI=s900-c-k-c0x00ffffff-no-rj"
+                alt="">
+        </div>
+
+        <!-- dashboard content goes here  -->
+        <div class="dash-content">
+            <div class="overview">
+                <h3 class="heading">Patient Profile</h3>
+                <div class="profile-and-report">
+                    <!-- =========== profile area ======== -->
+                    <div class="profile-area">
+                        <div class="image-area">
+                            <img src="https://yt3.googleusercontent.com/ytc/AOPolaSFCHpzuAarMICSpvuoV-W0t5T-PDM0OgiiVneI=s900-c-k-c0x00ffffff-no-rj"
+                                alt="" class="image">
+                        </div>
+                        <div class="profile-details">
+                            <div class="row">
+                                <p>Name:</p>
+                                <p class="hilight">Rijan Neupane</p>
+                            </div>
+                            <div class="row">
+                                <p>Street Address:</p>
+                                <p class="hilight">Battisputali</p>
+                            </div>
+                            <div class="row">
+                                <p>City:</p>
+                                <p class="hilight">Kathmandu</p>
+                            </div>
+                            <div class="row">
+                                <p>Provience:</p>
+                                <p class="hilight">Bagmati</p>
+                            </div>
+                            <div class="row">
+                                <p>Country: </p>
+                                <p class="hilight">Nepal</p>
+                            </div>
+                            <div class="row">
+                                <p>Contact:</p>
+                                <p class="hilight">9826807700</p>
+                            </div>
+                            <div class="row">
+                                <p>Department:</p>
+                                <p class="hilight">BCA</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============ MRI Images ============= -->
+                    <div class="mris">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdjFGR7ykhyK9pHY91_32BFi4Z5hoSz0pqwyEPsS4&s"
+                            alt="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxdQzgnuwEh-P1wTuwpSXEow7A-8irndUQYQ31caP5udt01aoDCCOkgWk03ds1rdMuzzc&usqp=CAU"
+                            alt="">
+                        <img src="https://www.frontiersin.org/files/Articles/565519/fneur-11-01024-HTML/image_m/fneur-11-01024-g001.jpg"
+                            alt="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdjFGR7ykhyK9pHY91_32BFi4Z5hoSz0pqwyEPsS4&s"
+                            alt="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxdQzgnuwEh-P1wTuwpSXEow7A-8irndUQYQ31caP5udt01aoDCCOkgWk03ds1rdMuzzc&usqp=CAU"
+                            alt="">
+                        <img src="https://www.frontiersin.org/files/Articles/565519/fneur-11-01024-HTML/image_m/fneur-11-01024-g001.jpg"
+                            alt="">
+                    </div>
+                    <br>
+                    <h3 class="heading">Report</h3>
+                    <div class="report-area">
+                        <h2>Report Goes Here</h2>
+                        <a href="#" class="download-report-btn">Download</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <script src="../static/partials/js/script.js"></script>
+</body>
+
+</html>
