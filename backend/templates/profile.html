@@ -19,12 +19,74 @@
             <span class="text">Country: {{patient[7]}}</span><br>
             <span class="text">Contact: {{patient[8]}}</span><br>
             <span class="text">Department: {{patient[9]}}</span><br>
-            <img class="box-image"
+            <img id="mriImage"
+                class="box-image"
                 src="{{url_for('static',filename=patient[10])}}"
                 alt="MRI Image"
                 style="height: 16rem; width: 14rem;"><br>
         {% endfor %}
             <button><a style="text-decoration: none; color: red;" href="/delete/{{patients[0][0]}}">Delete Profile</a></button>
+            <button style="background-color: greenyellow;color: purple;" onclick=uploadImage()>Create Prediction</button>
+            <table border="1">
+              <tr>
+                <th colspan="2">Dementia Analysis</th>
+              </tr>
+              <tr>
+                <th>Dementia Stage</th>
+                <td id="dementia_class">NA</td>
+              </tr>
+              <tr>
+                <th>Dementia Probability</th>
+                <td id="dementia_percent">NA</td>
+              </tr>
+              <tr>
+                <th>Prediction Status</th>
+                <td id="dementia_status">NA</td>
+              </tr>
+            </table>
     </div>
 </body>
+<script>
+    function uploadImage() {
+      // Get the MRI image element
+      const mriImage = document.getElementById('mriImage');
+    console.log(mriImage)
+      // Convert the image to a Blob
+      fetch(mriImage.src)
+        .then(response => response.blob())
+        .then(imageBlob => {
+          // Create a FormData object and append the image Blob
+          const formData = new FormData();
+          formData.append('image', imageBlob, 'mri.jpg');
+
+          const url = 'http://4.240.65.84:5000/predict';
+          console.log(formData)
+
+          // Send the request using Fetch API
+          fetch(url, {
+            method: 'POST',
+            body: formData
+          })
+            .then(response => response.json())
+            .then(data => {
+              // Process the JSON response received from the server
+              console.log(data);
+              document.getElementById("dementia_class").innerHTML = data['predicted_class']
+              document.getElementById("dementia_percent").innerHTML = data['percent_chance'] + "%"
+              if(data['predicted_class']=='Non_Demented'){
+                document.getElementById("dementia_status").innerHTML = "Negative"
+              }
+              else{
+                document.getElementById("dementia_status").innerHTML = "Positive"
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        })
+        .catch(error => {
+          console.error('Error fetching image:', error);
+        });
+    }
+  </script>
 </html>

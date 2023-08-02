@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 from models import User
 from database import db
+
 # Create the Flask app
 app = Flask(__name__)
 

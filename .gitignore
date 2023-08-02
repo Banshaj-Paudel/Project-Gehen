@@ -4,3 +4,4 @@
 /backend/static/uploads
 /frontend/.vscode
 /backend/__pycache__
+/backend/.env
