@@ -486,6 +486,9 @@ body .dashboard .dash-content .overview .boxes .box {
 }
 body .dashboard .dash-content .overview .boxes .box .box-image {
   width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }

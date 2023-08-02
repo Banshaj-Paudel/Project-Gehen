@@ -112,3 +112,33 @@ body.dark {
 .dash-content .overview .profile-and-report .report-area .download-report-btn:hover {
   background-color: var(--hover-color);
 }
+
+.profile-button{
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  margin: 20px 0;
+}
+.delete-btn{
+  background-color: #d52626;
+  color: #fff;
+  text-decoration: none;
+}
+.prediction-btn{
+  background-color: #3b9407;
+  color: #fff;
+}
+
+table{
+  /* border: 1px solid var(--mri-border-color); */
+  width: 100%;
+  max-width: 500px;
+}
+table tr:nth-child(odd){
+  background-color: var(--primary-color);
+}
+table tr td,
+table tr th{
+  padding: 10px;
+  color: var(--text-color);
+}

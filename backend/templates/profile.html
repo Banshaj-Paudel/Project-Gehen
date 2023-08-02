@@ -120,9 +120,9 @@
                     </div>
                     {% endfor %}
                     <br>
-                    <button><a style="text-decoration: none; color: red;" href="/delete/{{patients[0][0]}}">Delete Profile</a></button>
-                    <button style="background-color: greenyellow;color: purple;" onclick=uploadImage()>Create Prediction</button>
-                    <table border="1">
+                    <a class="profile-button delete-btn" href="/delete/{{patients[0][0]}}">Delete Profile</a>
+                    <button class="profile-button prediction-btn" onclick=uploadImage()>Create Prediction</button>
+                    <table>
                       <tr>
                         <th colspan="2">Dementia Analysis</th>
                       </tr>
