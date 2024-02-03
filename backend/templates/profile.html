@@ -35,11 +35,7 @@
         </div>
 
         <div class="menu-items">
-            <ul class="logout-mode"> 
-                <li><a href="/dashboard">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Dashboard</span>
-                </a></li>
+            <ul class="logout-mode">
                 <li><a href="/logout">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Logout</span>
@@ -75,125 +71,124 @@
         </div>
 
         <!-- dashboard content goes here  -->
-        <div class="dash-content">
-            <div class="overview">
-                <h3 class="heading">Patient Profile</h3>
-                <div class="profile-and-report">
-                    <!-- =========== profile area ======== -->
-                    <div class="profile-area">
-                    {% for patient in patients %}
-                        <div class="image-area">
-                            <img src="{{url_for('static',filename=patient[11])}}"
-                                alt="" class="image">
-                        </div>
-                        <div class="profile-details">
-                            <div class="row">
-                                <p>Name:</p>
-                                <p class="hilight">{{patient[1] + " " + patient[2]}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Street Address:</p>
-                                <p class="hilight">{{patient[4]}}</p>
-                            </div>
-                            <div class="row">
-                                <p>City:</p>
-                                <p class="hilight">{{patient[5]}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Province:</p>
-                                <p class="hilight">{{patient[6]}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Country: </p>
-                                <p class="hilight">{{patient[7]}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Contact:</p>
-                                <p class="hilight">{{patient[8]}}</p>
-                            </div>
-                            <div class="row">
-                                <p>Department:</p>
-                                <p class="hilight">{{patient[9]}}</p>
-                            </div>
-                        </div>
+<div class="dash-content">
+    <div class="overview">
+        <h3 class="heading">Patient Profile</h3>
+        <div class="profile-and-report">
+            <!-- =========== profile area ======== -->
+            <div class="profile-area">
+                {% for patient in patients %}
+                <div class="image-area">
+                    <img src="{{url_for('static',filename=patient[11])}}" alt="" class="image">
+                </div>
+                <div class="profile-details">
+                    <div class="row">
+                        <p>Name:</p>
+                        <p class="hilight">{{patient[1] + " " + patient[2]}}</p>
                     </div>
-                    <!-- ============ MRI Images ============= -->
-                    <div class="mris">
-                        <img id="mriImage" style="height: 200px;" src="{{url_for('static',filename=patient[10])}}"
-                            alt="MRI Image">
+                    <div class="row">
+                        <p>Street Address:</p>
+                        <p class="hilight">{{patient[4]}}</p>
                     </div>
-                    {% endfor %}
-                    <br>
-                    <a class="profile-button delete-btn" href="/delete/{{patients[0][0]}}">Delete Profile</a>
-                    <button class="profile-button prediction-btn" onclick=uploadImage()>Create Prediction</button>
-                    <table>
-                      <tr>
-                        <th colspan="2">Dementia Analysis</th>
-                      </tr>
-                      <tr>
-                        <th>Dementia Stage</th>
-                        <td id="dementia_class">NA</td>
-                      </tr>
-                      <tr>
-                        <th>Dementia Probability</th>
-                        <td id="dementia_percent">NA</td>
-                      </tr>
-                      <tr>
-                        <th>Prediction Status</th>
-                        <td id="dementia_status">NA</td>
-                      </tr>
-                    </table>
-
+                    <div class="row">
+                        <p>City:</p>
+                        <p class="hilight">{{patient[5]}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Province:</p>
+                        <p class="hilight">{{patient[6]}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Country: </p>
+                        <p class="hilight">{{patient[7]}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Contact:</p>
+                        <p class="hilight">{{patient[8]}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Department:</p>
+                        <p class="hilight">{{patient[9]}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
-    </section>
+            <!-- ============ MRI Images ============= -->
+            <div class="mris">
+                <img id="mriImage" style="height: 200px;" src="{{url_for('static',filename=patient[10])}}"
+                    alt="MRI Image">
+            </div>
+            {% endfor %}
+            <br>
+            <a class="profile-button delete-btn" href="/delete/{{patients[0][0]}}">Delete Profile</a>
+            <a class="profile-button edit-btn" style="background-color: antiquewhite;text-decoration: none;color: black;" href="/edit/{{patients[0][0]}}">Edit Profile</a>
+            <button class="profile-button prediction-btn" onclick=uploadImage()>Create Prediction</button>
+            <table>
+                <tr>
+                    <th colspan="2">Dementia Analysis</th>
+                </tr>
+                <tr>
+                    <th>Dementia Stage</th>
+                    <td id="dementia_class">NA</td>
+                </tr>
+                <tr>
+                    <th>Dementia Probability</th>
+                    <td id="dementia_percent">NA</td>
+                </tr>
+                <tr>
+                    <th>Prediction Status</th>
+                    <td id="dementia_status">NA</td>
+                </tr>
+            </table>
 
-    <script src="../static/partials/js/script.js"></script>
-    <script>
-        function uploadImage() {
-          // Get the MRI image element
-          const mriImage = document.getElementById('mriImage');
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+<script src="../static/partials/js/script.js"></script>
+<script>
+    function uploadImage() {
+        // Get the MRI image element
+        const mriImage = document.getElementById('mriImage');
         console.log(mriImage)
-          // Convert the image to a Blob
-          fetch(mriImage.src)
+        // Convert the image to a Blob
+        fetch(mriImage.src)
             .then(response => response.blob())
             .then(imageBlob => {
-              // Create a FormData object and append the image Blob
-              const formData = new FormData();
-              formData.append('image', imageBlob, 'mri.jpg');
-    
-              const url = 'http://4.240.65.84:5500/predict';
-              console.log(formData)
-    
-              // Send the request using Fetch API
-              fetch(url, {
-                method: 'POST',
-                body: formData
-              })
-                .then(response => response.json())
-                .then(data => {
-                  // Process the JSON response received from the server
-                  console.log(data);
-                  document.getElementById("dementia_class").innerHTML = data['predicted_class']
-                  document.getElementById("dementia_percent").innerHTML = data['percent_chance'] + "%"
-                  if(data['predicted_class']=='Non_Demented'){
-                    document.getElementById("dementia_status").innerHTML = "Negative"
-                  }
-                  else{
-                    document.getElementById("dementia_status").innerHTML = "Positive"
-                  }
+                // Create a FormData object and append the image Blob
+                const formData = new FormData();
+                formData.append('image', imageBlob, 'mri.jpg');
+
+                const url = 'http://4.240.65.84:5500/predict';
+                console.log(formData)
+
+                // Send the request using Fetch API
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
                 })
-                .catch(error => {
-                  console.error('Error:', error);
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        // Process the JSON response received from the server
+                        console.log(data);
+                        document.getElementById("dementia_class").innerHTML = data['predicted_class']
+                        document.getElementById("dementia_percent").innerHTML = data['percent_chance'] + "%"
+                        if (data['predicted_class'] == 'Non_Demented') {
+                            document.getElementById("dementia_status").innerHTML = "Negative"
+                        } else {
+                            document.getElementById("dementia_status").innerHTML = "Positive"
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
             })
             .catch(error => {
-              console.error('Error fetching image:', error);
+                console.error('Error fetching image:', error);
             });
-        }
-      </script>
+    }
+</script>
 </body>
 
 </html>

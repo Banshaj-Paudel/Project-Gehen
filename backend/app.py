@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 from models import User
 from database import db
+import time
 
 # Create the Flask app
 app = Flask(__name__)
@@ -31,6 +32,7 @@ def login():
         error_message = "Invalid username or password. Please try again."
         return render_template('login.html', error_message=error_message)
 
+
     return render_template('login.html')
 
 
@@ -42,12 +44,15 @@ def dashboard():
         return redirect(url_for('login'))  # Redirect to login if not authorized()
 
     # Fetch all the patient profiles from the database
-    cursor = db.cursor()
-    query = "SELECT `id`, `first_name`, `last_name`, `patient_image_path` FROM patient_profiles"
-    cursor.execute(query)
-    result = cursor.fetchall()
-    cursor.close()
-    return render_template('dashboard.html', result=result)
+    def fetch_dashboard_data_from_database():
+        cursor = db.cursor()
+        query = "SELECT `id`, `first_name`, `last_name`, `patient_image_path` FROM patient_profiles"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        cursor.close()
+        return result
+    dashboard_data = fetch_dashboard_data_from_database()
+    return render_template('dashboard.html', result=dashboard_data)
 
 
 @app.route('/logout')
@@ -105,8 +110,54 @@ def create_submit():
     cursor.execute(query, values)
     db.commit()
     cursor.close()
-
+    time.sleep(5)
     return redirect(url_for('dashboard'))
+
+# Edit endpoint
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit_profile(id):
+    # Check if the user is authenticated
+    username = request.cookies.get('user_auth')
+    if not username or not User.get_by_username(username):
+        return redirect(url_for('login'))  # Redirect to login if not authorized
+
+    # Fetch the profile data from the database based on the provided ID
+    cursor = db.cursor()
+    query = "SELECT * FROM patient_profiles WHERE id = %s"
+    cursor.execute(query, (id,))
+    profile_data = cursor.fetchone()
+    cursor.close()
+
+    if profile_data is None:
+        # Profile with the provided ID does not exist
+        return 'Profile not found', 404
+
+    if request.method == 'POST':
+        # Process the form submission for updating the profile
+        # Retrieve form data
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        age = request.form['age']
+        street_address = request.form['street_address']
+        city = request.form['city']
+        province = request.form['province']
+        contact = request.form['contact']
+        country = request.form['country']
+        department = request.form['department']
+        
+        # Update the profile data in the database
+        cursor = db.cursor()
+        update_query = "UPDATE patient_profiles SET first_name = %s, last_name = %s, age = %s, street_address = %s, city = %s, province = %s, contact = %s, country = %s, department = %s WHERE id = %s"
+        cursor.execute(update_query, (first_name, last_name, age, street_address, city, province, contact, country, department, id))
+        db.commit()
+        cursor.close()
+        time.sleep(3)
+        # Redirect to the profile view page after editing
+        return redirect(url_for('profile', id=id))
+
+    # Render the profile edit form with pre-filled data
+    return render_template('edit_profile.html', profile=profile_data)
+
 
 # Profile endpoint
 @app.route('/profile/<id>')
@@ -116,7 +167,6 @@ def profile(id):
     cursor.execute(patient_query)
     patient_info = cursor.fetchall()
     cursor.close()
-    
     return render_template('profile.html',patients=patient_info)
 
 @app.route('/delete/<id>',methods=["GET"])
@@ -128,7 +178,3 @@ def delete_profile(id):
     cursor.close()
 
     return redirect(url_for('dashboard'))
-
-if __name__ == '__main__':
-    cursor = db.cursor()
-    app.run(debug=True)
