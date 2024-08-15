@@ -3,6 +3,18 @@
 
 Welcome to **Project Gehen**! This project is designed for diagnosing dementia using brain MRI scans that leverages machine learning algorithms to analyze MRI scans and predict the presence and type of dementia.
 
+## Why Project Gehen?
+
+**A Tribute to My Grandmother**
+
+![Gehendra Devi Paudel](./Aama.jpg "AAMA")
+
+Project Gehen is a deeply personal endeavor born out of the heart-wrenching experience of losing my grandmother, Aama, to Alzheimer's disease. The disease progressed rapidly, taking her from us on ***March 08, 2023***. The pain of witnessing her gradual decline was unbearable, compounded by the realization that early detection could have made a significant difference.
+
+This project is a testament to her memory and a commitment to prevent others from suffering the same fate. The research I conducted during my fourth semester ignited a passion for machine learning and neurotechnology, fields I believe hold the key to early Alzheimer's detection and treatment. 
+
+Through Project Gehen, I aim to contribute to the development of tools and technologies that can help in the early diagnosis and management of Alzheimer's disease. My ultimate goal is to create a world where families are not forced to endure the same heartbreak that I experienced. Therefore, **Project Gehen**, named after my `aama`, **Mrs. Gehendra Devi Paudel.**` 
+
 ## 📚 Table of Contents
 
 - [About the Project](#about-the-project)
